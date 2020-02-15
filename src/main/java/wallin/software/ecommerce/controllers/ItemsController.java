@@ -1,6 +1,9 @@
 package wallin.software.ecommerce.controllers;
 
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +28,11 @@ public class ItemsController {
 	public ResponseEntity<Item> getItem(@PathVariable int id){
 		
 		return new ResponseEntity<Item>(itemsDao.retrieveItem(id), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/", method=RequestMethod.GET)
+	public ResponseEntity<List<Item>> getAllItems(){
+		
+		return new ResponseEntity<List<Item>>(itemsDao.retrieveAllItems(), HttpStatus.OK);
 	}
 }
